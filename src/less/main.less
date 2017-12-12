@@ -1,0 +1,20 @@
+@import './boiler/index';
+
+/**
+ * Test CSS
+ */
+header[role="main"] { text-align: center; }
+
+#example_panels .panel {
+	height: 4rem;
+
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	background-color: #ddd;
+}
+
+@media screen and (min-width: @breakpoint-desktop-small) {
+	header[role="main"] nav .container { justify-content: flex-end !important; }
+}

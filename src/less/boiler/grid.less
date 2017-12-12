@@ -1,0 +1,77 @@
+/**
+ * I really don't ever see the need for more than 8 columns in a web project.
+ * So, here's an 8 column design that works across every device.
+ *
+ * In theory, it can be as many columns as you want. I chose 8 by default.
+ */
+
+.generate-columns(@n, @i: 1) when (@i =< @n) {
+	&.c-@{i} { flex: 0 1 ((100% / @n) * @i - (2% * (@n - @i) / @n)); }
+
+	.generate-columns(@n, (@i + 1));
+}
+
+#app {
+	margin: 0;
+	padding: 0;
+
+	width: 100%;
+	max-width: 100vw;
+
+	display: block;
+
+	&.fw { max-width: 100vw !important; }
+
+	.container {
+		margin: 0 auto;
+		padding: @padding-small;
+
+		width: 100%;
+
+		display: flex;
+		flex-flow: row wrap;
+		justify-content: flex-start;
+		align-items: center;
+
+		.panel {
+			flex: 0 1 100%;
+
+			&:first-child { margin-left: 0 !important; }
+
+			&.half, &.third { margin-left: 2%; }
+			&.half { flex: 0 1 49% !important; }
+			&.third { flex: 0 1 32% !important; }
+			&.two-thirds { flex: 0 1 66% !important; }
+		}
+	}
+}
+
+@media screen and (min-width: @breakpoint-desktop-small) {
+	#app .container {
+		max-width: @breakpoint-desktop-small;
+
+		.panel {
+			margin-left: 2%;
+			
+			.generate-columns(8);
+		}
+	}
+}
+
+@media screen and (min-width: @breakpoint-desktop) {
+	#app .container {
+		max-width: @breakpoint-desktop;
+	}
+}
+
+@media screen and (min-width: @breakpoint-desktop-large) {
+	#app .container {
+		max-width: @breakpoint-desktop-large;
+	}
+}
+
+@media screen and (min-width: @breakpoint-desktop-huge) {
+	#app .container {
+		max-width: @breakpoint-desktop-huge;
+	}
+}
