@@ -5,10 +5,6 @@ import autoprefixer from 'autoprefixer'
 
 import entrypoints from './entrypoints.babel.js'
 
-const plugins = [
-  new ExtractTextPlugin('[name].css')
-]
-
 export default {
   entry: entrypoints,
   output: {
@@ -16,7 +12,9 @@ export default {
     publicPath: '/resources/',
     filename: '[name].js'
   },
-  plugins,
+  plugins: [
+    new ExtractTextPlugin('[name].css')
+  ],
   module: {
     rules: [
       {
